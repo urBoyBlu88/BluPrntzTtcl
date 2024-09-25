@@ -21,7 +21,7 @@
 
 //U8G2_SSD1306_72X40_ER_F_HW_I2C u8g2(U8G2_R0,/* reset=*/U8X8_PIN_NONE);// use for ESP32 S3
 //U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE); // initialization for the 128x64px display for 0.96 oled connected
-//U8G2_SSD1306_64X48_ER_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE); //weird white background
+
 
 U8G2_SH1106_72X40_WISE_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE); // esp32 c3
 
