@@ -1,3 +1,5 @@
+//////////////////OLED v2 UGLY////////////////////////////////////
+
 COMPONENTS
 1.	ESP32-C3 with 0.42 OLED
 a.	Link for product
@@ -100,5 +102,82 @@ All right that’s everything Time to Code!
 
 
 
+/////////////////////////////////////FOSS DOT RGB/////////////////////////////////////////////////////
+FOSS DOT Optics Operation
+ 
+Hi there!
+Thank you for joining the Blue Printz Tactical Family!
+As the new owner of a FOSS Dot Optic I wanted to give you some basic instructions!
+Charging: remove the slip on ring on the back. Once removed, you can now lift out the main carriage, make sure to line the battery back up with it slot when reinserting! On the exposed bottom of the carriage are 2 usb ports, one on the blue board and one on the black esp32. Connect to the blue tp4056 to charge, if you so desire to reprogram, plug in to the esp32 and inser the usb cabe to your computer. 
+
+Reprogram:
+I used Arduino IDE so it should be easy enough for you as well. 
+https://github.com/urBoyBlu88/BluPrntzTtcl/blob/main/ColorFOSSDOT.ino
+
+Here is the code, id recommend swapping the images that are green. Blue and white images work best in all light conditions. I’m still testing other color configures.
+You can download my image .h files from this same git repo.
+
+download this board manager, same version is probably best.
+ 
+
+
+
+
+
+
+
+
+
+
+
+and the adafruit st7735 and st7789 lib
+ 
+
+
+the correct board to select is esp32 c3 dev board
+ 
+here is my upload config
+ 
+
+
+
+
+
+
+
+
+
+Bluetooth Windage and Elevation:
+On your phone, Download this app,
+
+https://play.google.com/store/apps/details?id=com.zhctwh.ble_tester 
+With your Foss Dot powered ON. Bluetooth on you phone turned ON, and location on your phone turned ON; open the app and hit the scan button at the bottom. Search for “UglyOptic” and select it. 
+Then click the last option on the list that says “service” and has a bunch of letters and numbers.
+
+Next tap in the write area to enter text. Set the check box from hex -> ASCII. You want it to be ASCII.
+       
+
+
+
+
+
+Here are your codes to enter for W&E(I hope they are as simple as I think they are!)
+!* all entered letter should be lowercase *!
+l – enter lowercase ‘L’, your reticle should shift left 
+r – enter lowercase ‘R’, your reticle should shift right
+u – enter lowercase ‘U’, your reticle should shift up
+d – enter lowercase ‘D’, your reticle should move down
+m – enter lowercase ‘M’ your reticle should center on screen. 
+
+Lenses are removable if you wish to change the view of the reticle on the lens. OR simply if you need to replace the lens. Here is the lens used: lens.
+
+If you have any questions or concerns at all, please do not hesitate to reach out! We are always happy to help however we can here at Blue Printz Tactical!
+Thanks for your Support!
+Check back on the site or on reddit for new updates and innovations!
+Warm Regards,
+Blue Printz Tactical
+502-489-4561
+blooperspecive@gmail.com
+   
 
 
