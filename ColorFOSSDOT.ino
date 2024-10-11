@@ -64,10 +64,12 @@ void setup(void) {
   Serial.begin(9600);
   Serial.print(F("Hello! ST77xx TFT Test"));
  pinMode(buttonPin,INPUT);
-tft.initR(INITR_BLACKTAB); 
+//tft.initR(INITR_BLACKTAB); red and blue are swapped on this one
+  tft.initR(INITR_GREENTAB); //has an offset of 25 on the y axis
 //tft.invertDisplay(true);
   // OR use this initializer (uncomment) if using a 0.96" 160x80 TFT:
-  //tft.initR(INITR_MINI160x80);  // Init ST7735S mini display
+  //tft.initR(INITR_MINI160x80);  // Init ST7735S mini display this is the correct display however there always seem to be missed pixels at the bottom of the screen, you may try this one but may have to test and fix the w and h
+
   // OR use this initializer (uncomment) if using a 0.96" 160x80 TFT with 
   // plug-in FPC (if you see the display is inverted!)
   //tft.initR(INITR_MINI160x80_PLUGIN);  // Init ST7735S mini display
