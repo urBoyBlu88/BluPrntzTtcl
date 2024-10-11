@@ -72,7 +72,7 @@ void setup(void) {
 
   // OR use this initializer (uncomment) if using a 0.96" 160x80 TFT with 
   // plug-in FPC (if you see the display is inverted!)
-  tft.initR(INITR_MINI160x80_PLUGIN);  // Init ST7735S mini display this is the proper display for the 0.96
+  tft.initR(INITR_MINI160x80_PLUGIN);  // Init ST7735S mini display this is the proper display for the 0.96 used with the fossdot
   
  BLEDevice::init("UglyOptic");
   BLEServer *pServer = BLEDevice::createServer();
