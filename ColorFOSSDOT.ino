@@ -64,7 +64,7 @@ void setup(void) {
   Serial.begin(9600);
   Serial.print(F("Hello! ST77xx TFT Test"));
  pinMode(buttonPin,INPUT);
-//tft.initR(INITR_BLACKTAB); red and blue are swapped on this one
+//tft.initR(INITR_BLACKTAB); red and blue are swapped on this one and 25 y axis offset
   //tft.initR(INITR_GREENTAB); //has an offset of 25 on the y axis
 //tft.invertDisplay(true);
   // OR use this initializer (uncomment) if using a 0.96" 160x80 TFT:
