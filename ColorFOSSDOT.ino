@@ -78,8 +78,8 @@ void setup(void) {
  pinMode(buttonPin,INPUT);
 //tft.initR(INITR_GREENTAB); 
   curClick = EEPROM.read(0);
-  reticlePosX = EEPROM.read(1);
-  reticlePosY = EEPROM.read(2);
+  // reticlePosX = EEPROM.read(1);
+  // reticlePosY = EEPROM.read(2);
 //tft.initR(INITR_MINI160x80);
 //tft.invertDisplay(true);
   // OR use this initializer (uncomment) if using a 0.96" 160x80 TFT:
@@ -256,8 +256,8 @@ void PickAReticleToShow(){
   }
    // save the reticle state in flash memory
     EEPROM.write(0, curClick);
-    EEPROM.write(1, reticlePosX);
-    EEPROM.write(2, reticlePosY);
+    // EEPROM.write(1, reticlePosX);
+    // EEPROM.write(2, reticlePosY);
     EEPROM.commit();
 }
 
