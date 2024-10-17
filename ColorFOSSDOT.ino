@@ -10,6 +10,13 @@
 #include <xwingReticle.h>
 #include <AcogRet.h>
 #include <HelloKitty.h>
+#include <squareRetBlkWht.h>
+#include <blueSquare.h>
+#include <squareRtgreen.h>
+#include <EEPROM.h>
+
+#define EEPROM_SIZE 3
+
 
   // For the breakout board, you can use any 2 or 3 pins.
   // These pins will also work for the 1.8" TFT shield.
@@ -59,21 +66,27 @@ class MyCallbacks: public BLECharacteristicCallbacks {
     }
 
 };
+int reticlePosX = 0;
+int reticlePosY = 0;
+
 
 void setup(void) {
   Serial.begin(9600);
   Serial.print(F("Hello! ST77xx TFT Test"));
+   // initialize EEPROM with predefined size
+  EEPROM.begin(EEPROM_SIZE);
  pinMode(buttonPin,INPUT);
-//tft.initR(INITR_BLACKTAB); red and blue are swapped on this one and 25 y axis offset
-  //tft.initR(INITR_GREENTAB); //has an offset of 25 on the y axis
+//tft.initR(INITR_GREENTAB); 
+  curClick = EEPROM.read(0);
+  reticlePosX = EEPROM.read(1);
+  reticlePosY = EEPROM.read(2);
+//tft.initR(INITR_MINI160x80);
 //tft.invertDisplay(true);
   // OR use this initializer (uncomment) if using a 0.96" 160x80 TFT:
-  //tft.initR(INITR_MINI160x80);  //this one has inverted colors Init ST7735S mini display this is the correct display however there always seem to be missed pixels at the bottom of the screen, you may try this one but may have to test and fix the w and h
-
+  //tft.initR(INITR_MINI160x80);  // Init ST7735S mini display
   // OR use this initializer (uncomment) if using a 0.96" 160x80 TFT with 
   // plug-in FPC (if you see the display is inverted!)
-  tft.initR(INITR_MINI160x80_PLUGIN);  // Init ST7735S mini display this is the proper display for the 0.96 used with the fossdot
-  
+  tft.initR(INITR_MINI160x80_PLUGIN);  // Init ST7735S mini display
  BLEDevice::init("UglyOptic");
   BLEServer *pServer = BLEDevice::createServer();
 
@@ -112,7 +125,7 @@ void setup(void) {
  // delay(500);
 
 tft.setRotation(3);
- tft.invertDisplay(true);
+// tft.invertDisplay(true);
 //   delay(10000);
 
 
@@ -158,10 +171,9 @@ tft.setRotation(3);
 
 //   Serial.println("done");
 //   delay(1000);
-SquareReticle();
+PickAReticleToShow();
 }
-int reticlePosX = 0;
-int reticlePosY = 25;
+
 
 void loop() {
   int buttonState = digitalRead(buttonPin);
@@ -227,32 +239,52 @@ void loop() {
 
 void PickAReticleToShow(){
   if(curClick == 2 ){
-              Predator();
-          }else if(curClick == 3 ){
-            Xwing();
-          }else if(curClick == 4 ){
-            PrigGif();
-          }else if(curClick == 5 ){
-            Acog();
-          }else if(curClick == 6 ){
-            KittyHello();
-          }else{
-            SquareReticle();
-            
-          }
+      SquareReticle();//white sqaure black bkg
+  }else if(curClick == 3 ){
+    PrigGif();
+    //Predator();
+  }else if(curClick == 4 ){
+     SquareRetBlkWht();
+    //Xwing();
+  }else if(curClick == 5 ){
+    Acog();
+  }else if(curClick == 6 ){
+    KittyHello();
+  }else{
+    GreenSquare();
+   
+  }
+   // save the reticle state in flash memory
+    EEPROM.write(0, curClick);
+    EEPROM.write(1, reticlePosX);
+    EEPROM.write(2, reticlePosY);
+    EEPROM.commit();
 }
 
 void SquareReticle(){
   
         // large block of text
   tft.fillScreen(ST77XX_BLACK);
- tft.drawRGBBitmap(reticlePosX, reticlePosY, squareRet, 160, 80);
+ tft.drawRGBBitmap(reticlePosX, reticlePosY, squareRetWhiteRed, 160, 80);
 }
 
+void SquareRetBlkWht(){
+  //squareRetBlkWht
+    tft.fillScreen(ST77XX_BLACK);
+ tft.drawRGBBitmap(reticlePosX, reticlePosY, squareRetBlkWht, 160, 80);
+}
 
+void RedSquare(){
+  //blueSquare
+   tft.fillScreen(ST77XX_BLACK);
+ tft.drawRGBBitmap(reticlePosX, reticlePosY, blueSquare, 160, 80);
+}
 
-
-
+void GreenSquare(){
+  //squareRtgreen
+   tft.fillScreen(ST77XX_BLACK);
+ tft.drawRGBBitmap(reticlePosX, reticlePosY, squareRtgreen, 160, 80);
+}
 
 void Predator(){
  // tft.invertDisplay(true);
@@ -311,6 +343,5 @@ void PrigGif(){
    }
  
 }
-
 
 
