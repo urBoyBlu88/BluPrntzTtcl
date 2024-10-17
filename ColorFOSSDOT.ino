@@ -15,7 +15,7 @@
 #include <squareRtgreen.h>
 #include <EEPROM.h>
 
-#define EEPROM_SIZE 3
+#define EEPROM_SIZE 4
 
 
   // For the breakout board, you can use any 2 or 3 pins.
@@ -51,6 +51,12 @@ float p = 3.1415926;
 
 int buttonPin = 21;
 int curClick = 1;
+int reticlePosX = 0;
+int reticlePosY = 0;
+
+int lastSAvedx;
+int lastSavedy;
+
 
 class MyCallbacks: public BLECharacteristicCallbacks {
   String value = "";
@@ -66,20 +72,36 @@ class MyCallbacks: public BLECharacteristicCallbacks {
     }
 
 };
-int reticlePosX = 0;
-int reticlePosY = 0;
 
 
 void setup(void) {
   Serial.begin(9600);
   Serial.print(F("Hello! ST77xx TFT Test"));
    // initialize EEPROM with predefined size
-  EEPROM.begin(EEPROM_SIZE);
+  EEPROM.begin(3);
  pinMode(buttonPin,INPUT);
+ 
+   
+
 //tft.initR(INITR_GREENTAB); 
-  curClick = EEPROM.read(0);
-  // reticlePosX = EEPROM.read(1);
-  // reticlePosY = EEPROM.read(2);
+
+
+   reticlePosX = EEPROM.read(0);
+ 
+ reticlePosY = EEPROM.read(1);
+ if(reticlePosX > 21){
+  reticlePosX = 0;
+ } 
+ if(reticlePosX < -21){
+  reticlePosX = 0;
+ }
+ if(reticlePosY > 10){
+  reticlePosY = 0;
+ } 
+ if(reticlePosY < -10){
+  reticlePosY = 0;
+ }
+ curClick = EEPROM.read(2);
 //tft.initR(INITR_MINI160x80);
 //tft.invertDisplay(true);
   // OR use this initializer (uncomment) if using a 0.96" 160x80 TFT:
@@ -129,49 +151,10 @@ tft.setRotation(3);
 //   delay(10000);
 
 
-  
 
-//   // tft print function!
-//   //tftPrintTest();
-//   tft.drawRGBBitmap(-15, 45, prig1, 160, 80);
-//   delay(10000);
 
-//   // a single pixel
-//  // tft.drawPixel(tft.width()/2, tft.height()/2, ST77XX_GREEN);
-//    tft.drawRGBBitmap(-15, 45, prig2, 160, 80);
-//   delay(10000);
-
-//   // line draw test
-//   testlines(ST77XX_YELLOW);
-//   delay(500);
-
-//   // optimized lines
-//   testfastlines(ST77XX_RED, ST77XX_BLUE);
-//   delay(500);
-
-//   testdrawrects(ST77XX_GREEN);
-//   delay(500);
-
-//   testfillrects(ST77XX_YELLOW, ST77XX_MAGENTA);
-//   delay(500);
-
-//   tft.fillScreen(ST77XX_BLACK);
-//   testfillcircles(10, ST77XX_BLUE);
-//   testdrawcircles(10, ST77XX_WHITE);
-//   delay(500);
-
-//   testroundrects();
-//   delay(500);
-
-//   testtriangles();
-//   delay(500);
-
-//   mediabuttons();
-//   delay(500);
-
-//   Serial.println("done");
-//   delay(1000);
 PickAReticleToShow();
+
 }
 
 
@@ -180,21 +163,31 @@ void loop() {
   Serial.println(buttonState);
    if (digitalRead(buttonPin) == HIGH)  {
           curClick += 1;
+       
           PickAReticleToShow();
           if (curClick > 6){
               
               curClick = 1;
           }
    }
+  if(buf[0] != ' '){
+   
+    SetReticlePos();
+    
+  }
+
+ 
+}
+
+void SetReticlePos(){
+
+ 
       
-  // tft.invertDisplay(true);
-  // delay(500);
-  // tft.invertDisplay(false);
-  // delay(500);
- if(buf[0] == 'r'){
-        if(reticlePosX > -16){
+if(buf[0] == 'r'){
+        if(reticlePosX > -20){
      
           reticlePosX -=1;
+           
           buf[0] = ' ';
           PickAReticleToShow();
         }
@@ -203,43 +196,52 @@ void loop() {
         if(reticlePosX < 16){
           
           reticlePosX +=1;
+         
           buf[0] = ' ';
         PickAReticleToShow();
         }
       }
 
       if(buf[0] == 'u'){
-        if(reticlePosY < 35){
+        if(reticlePosY > -10){
          
           reticlePosY -=1;
+          
+
           buf[0] = ' ';
          PickAReticleToShow();
         }
       }
 
       if(buf[0] == 'd'){
-        if(reticlePosY > -35){
+        if(reticlePosY < 10){
           
           reticlePosY +=1;
+        
+
           buf[0] = ' ';
          PickAReticleToShow();
         }
       }
 
       if(buf[0] == 'm'){
-        if(reticlePosY > -35){
+       
           
-          reticlePosY = 25;
+          reticlePosY = 0;
           reticlePosX = 0;
+          
           buf[0] = ' ';
          PickAReticleToShow();
-        }
+        
       }
+      
 }
 
+
 void PickAReticleToShow(){
+ 
   if(curClick == 2 ){
-      SquareReticle();//white sqaure black bkg
+      SquareReticle();
   }else if(curClick == 3 ){
     PrigGif();
     //Predator();
@@ -254,15 +256,22 @@ void PickAReticleToShow(){
     GreenSquare();
    
   }
-   // save the reticle state in flash memory
-    EEPROM.write(0, curClick);
-    // EEPROM.write(1, reticlePosX);
-    // EEPROM.write(2, reticlePosY);
+ 
+   
+        
+  
+EEPROM.write(0, reticlePosX);
+     EEPROM.write(1, reticlePosY);
+     EEPROM.write(2, curClick);
     EEPROM.commit();
+   
+   
+ 
+
 }
 
 void SquareReticle(){
-  
+ 
         // large block of text
   tft.fillScreen(ST77XX_BLACK);
  tft.drawRGBBitmap(reticlePosX, reticlePosY, squareRetWhiteRed, 160, 80);
@@ -343,5 +352,7 @@ void PrigGif(){
    }
  
 }
+
+
 
 
