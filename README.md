@@ -1,3 +1,11 @@
+////IMPORTANT/////
+
+-IF your ESP32 C3 will not connect to your device, hold the RESET button, and push the BOOT, let go of boot and then let go of reset and you should connect.
+
+
+
+
+
 //////////////////OLED v2 UGLY////////////////////////////////////
 
 COMPONENTS
