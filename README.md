@@ -1,8 +1,10 @@
 Plug into your computer USB 3.0 - must be a usb3.0 port
 
--Your ESP32 C3 will not connect to your Computer Immediatley you MUST PUT IT INTO BOOT MODE!
+Your ESP32 C3 will not connect to your Computer Immediatley you MUST PUT IT INTO BOOT MODE!
+
 HOW TO PUT INTO BOOT MODE
--Hold the RESET button, then press the BOOT button, now both button held down; let go of Reset and then after 1 more second let go of Boot and you should connect.
+
+Hold the RESET button, then press the BOOT button, now both button held down; let go of Reset and then after 1 more second let go of Boot and you should connect.
 
 Download the Code Zip folder
 
