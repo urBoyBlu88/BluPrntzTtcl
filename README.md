@@ -1,3 +1,20 @@
+Download the Code Zip folder
+
+unzip that folder
+
+run the .ino file
+
+it will ask you to make a new folder for it
+
+hit yes/ok
+
+now select your board - set it to a esp32 c3 dev module
+
+upload
+
+
+
+
 ////IMPORTANT/////
 
 -IF your ESP32 C3 will not connect to your Computer, hold the RESET button, and push the BOOT, let go of boot and then let go of reset and you should connect.
