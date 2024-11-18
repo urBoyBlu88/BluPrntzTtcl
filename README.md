@@ -25,7 +25,7 @@ upload
 
 ////IMPORTANT/////
 
--IF your ESP32 C3 will not connect to your Computer, hold the RESET button, and push the BOOT, let go of Reset and then let go of Boot and you should connect.
+-IF your ESP32 C3 will not connect to your Computer, hold the RESET button, and push the BOOT down at the same time, let go of Reset and then let go of Boot after another second and you should connect.
 
 
 
