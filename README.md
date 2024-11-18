@@ -209,7 +209,6 @@ Thanks for your Support!
 Check back on the site or on reddit for new updates and innovations!
 Warm Regards,
 Blue Printz Tactical
-502-489-4561
 blooperspecive@gmail.com
    
 
