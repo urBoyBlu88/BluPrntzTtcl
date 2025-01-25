@@ -1,3 +1,7 @@
+
+
+
+
 Plug into your computer USB 3.0 - must be a usb3.0 port
 
 Your ESP32 C3 will not connect to your Computer Immediatley you MUST PUT IT INTO BOOT MODE!
@@ -27,7 +31,9 @@ upload
 
 -IF your ESP32 C3 will not connect to your Computer, hold the RESET button, and push the BOOT down at the same time, let go of Reset and then let go of Boot after another second and you should connect.
 
+/////////////////1/24/25 UPDATE/////////////////////
 
+Check out the new XiaoSeedStudioFossDot file if you want to only have a single port for charging and programming! or you accidently got a seed studio esp32c3!
 
 
 
