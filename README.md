@@ -1,7 +1,19 @@
+Check out the new Better Reticles code!
 
+keep in mind, the ESP32 is directley connected to the pins of the LCD
+The tft settings will have to be edited to match your wiring!
+remeber all you need to change is 
 
+CS = 
+DC = 
+RES =
 
+and then in the setup:
+SPI.begin(SDA,MISO,SCL,CS)
 
+after changing those things to match your connections you should be golden :) 
+
+//////////////////////////////////////////////////////////////
 Plug into your computer USB 3.0 - must be a usb3.0 port
 
 Your ESP32 C3 will not connect to your Computer Immediatley you MUST PUT IT INTO BOOT MODE!
